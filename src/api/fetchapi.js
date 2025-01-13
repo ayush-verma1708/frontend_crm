@@ -103,7 +103,7 @@ export const updateCustomer = async (updatedData) => {
   try {
     const id = window.localStorage.getItem('currCustId');
 
-    console.log('Attempting to update customer with ID:', id);
+    // console.log('Attempting to update customer with ID:', id);
     console.log('Payload data:', updatedData);
 
     const queryParams = new URLSearchParams();
