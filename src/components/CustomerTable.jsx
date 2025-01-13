@@ -34,6 +34,8 @@ const CustomerTable = () => {
   const [selectedModelTypes, setSelectedModelTypes] = useState([]);
   const [filterCustomers, setFilterCustomers] = useState([]);
 
+  const [currentPage, setCurrentPage] = useState(1); // Track the current page
+
   const magazines = JSON.parse(localStorage.getItem('magazine'));
 
   const [tableFields, setTableFields] = useState({
@@ -86,9 +88,14 @@ const CustomerTable = () => {
   //   }
   // };
 
+  // const handlePageChange = (newPage) => {
+  //   setPage(newPage);
+  //   fetchCustomers(newPage);
+  // };
+
   const handlePageChange = (newPage) => {
-    setPage(newPage);
-    fetchCustomers(newPage);
+    setCurrentPage(newPage); // Update the page number
+    fetchCustomers(newPage, 200, search, minPrice, maxPrice);
   };
 
   const filteredCustomers = customers.filter((customer) => {
@@ -204,12 +211,54 @@ const CustomerTable = () => {
   //     setLoading(false);
   //   }
   // };
+  // const fetchCustomers = async (
+  //   currentPage = 1,
+  //   pageSize = 200,
+  //   search = '',
+  //   minPrice = 0, // Default to least value
+  //   maxPrice = Number.MAX_VALUE // Default to maximum value
+  // ) => {
+  //   setLoading(true);
+  //   setError(null);
+  //   try {
+  //     console.log('Fetching customers with:', {
+  //       currentPage,
+  //       pageSize,
+  //       search,
+  //       minPrice,
+  //       maxPrice,
+  //     });
+
+  //     // Pass updated values
+  //     const data = await fetchRecords(
+  //       currentPage,
+  //       pageSize,
+  //       search,
+  //       minPrice,
+  //       maxPrice
+  //     );
+
+  //     const mergedCustomers = mergeCustomersByEmail(data.records);
+
+  //     setCustomers(mergedCustomers);
+  //     if (mergedCustomers.length > 0) {
+  //       setFields(Object.keys(mergedCustomers[0]));
+  //     }
+
+  //     setTotalPages(data.totalPages || Math.ceil(data.totalRecords / pageSize));
+  //   } catch (err) {
+  //     console.error('Error fetching customers:', err);
+  //     setError('Error fetching customers');
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
   const fetchCustomers = async (
     currentPage = 1,
     pageSize = 200,
     search = '',
-    minPrice = 0, // Default to least value
-    maxPrice = Number.MAX_VALUE // Default to maximum value
+    minPrice = 0,
+    maxPrice = Number.MAX_VALUE
   ) => {
     setLoading(true);
     setError(null);
@@ -268,6 +317,7 @@ const CustomerTable = () => {
       }
     };
   }, [search, minPrice, maxPrice]); // Dependencies: search, minPrice, maxPrice
+
   // useEffect(() => {
   //   console.log('useEffect triggered:', { search, minPrice, maxPrice });
   //   fetchCustomers(1, 200, search, minPrice, maxPrice);
@@ -589,18 +639,17 @@ const CustomerTable = () => {
             onChange={(e) => setMaxPrice(e.target.value)}
           />
         </div>
-
         <div className='pagination-controls'>
           <button
-            onClick={() => handlePageChange(page - 1)}
-            disabled={page === 1}
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
             style={{
               padding: '8px',
               borderRadius: '4px',
-              border: '1px solid #d1d5db', // Neutral light gray for border
-              backgroundColor: page === 1 ? '#f9fafb' : '#ffffff', // Disabled: very light gray; Normal: white
-              color: page === 1 ? '#9ca3af' : '#374151', // Disabled: gray; Normal: dark gray
-              cursor: page === 1 ? 'not-allowed' : 'pointer',
+              border: '1px solid #d1d5db',
+              backgroundColor: currentPage === 1 ? '#f9fafb' : '#ffffff',
+              color: currentPage === 1 ? '#9ca3af' : '#374151',
+              cursor: currentPage === 1 ? 'not-allowed' : 'pointer',
               fontSize: '12px',
               fontWeight: '500',
               transition: 'background-color 0.3s, color 0.3s',
@@ -615,20 +664,21 @@ const CustomerTable = () => {
             if (
               pageNum === 1 ||
               pageNum === totalPages ||
-              (pageNum >= page - 2 && pageNum <= page + 2)
+              (pageNum >= currentPage - 2 && pageNum <= currentPage + 2)
             ) {
               return (
                 <button
                   key={pageNum}
-                  onClick={() => handlePageChange(pageNum)}
-                  className={page === pageNum ? 'active' : ''}
+                  onClick={() => handlePageChange(pageNum)} // Set to pageNum instead of currentPage + 1
+                  disabled={currentPage === pageNum}
                   style={{
                     padding: '8px',
                     borderRadius: '4px',
                     border: '1px solid #d1d5db',
-                    backgroundColor: page === pageNum ? '#2563eb' : '#ffffff', // Active: blue; Normal: white
-                    color: page === pageNum ? '#ffffff' : '#374151', // Active: white; Normal: dark gray
-                    fontWeight: page === pageNum ? '600' : '500',
+                    backgroundColor:
+                      currentPage === pageNum ? '#2563eb' : '#ffffff',
+                    color: currentPage === pageNum ? '#ffffff' : '#374151',
+                    fontWeight: currentPage === pageNum ? '600' : '500',
                     cursor: 'pointer',
                     fontSize: '12px',
                     transition: 'background-color 0.3s, color 0.3s',
@@ -639,7 +689,7 @@ const CustomerTable = () => {
               );
             }
 
-            if (pageNum === page - 3 || pageNum === page + 3) {
+            if (pageNum === currentPage - 3 || pageNum === currentPage + 3) {
               return (
                 <span
                   key={pageNum}
@@ -658,15 +708,16 @@ const CustomerTable = () => {
           })}
 
           <button
-            onClick={() => handlePageChange(page + 1)}
-            disabled={page === totalPages}
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
             style={{
               padding: '8px',
               borderRadius: '4px',
               border: '1px solid #d1d5db',
-              backgroundColor: page === totalPages ? '#f9fafb' : '#ffffff',
-              color: page === totalPages ? '#9ca3af' : '#374151',
-              cursor: page === totalPages ? 'not-allowed' : 'pointer',
+              backgroundColor:
+                currentPage === totalPages ? '#f9fafb' : '#ffffff',
+              color: currentPage === totalPages ? '#9ca3af' : '#374151',
+              cursor: currentPage === totalPages ? 'not-allowed' : 'pointer',
               fontSize: '12px',
               fontWeight: '500',
               transition: 'background-color 0.3s, color 0.3s',
