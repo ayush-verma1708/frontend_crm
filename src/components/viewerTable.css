@@ -1,0 +1,106 @@
+.view-table-content{
+  max-height: 65vh;
+  overflow-y: auto;
+}
+
+.view-table-content::-webkit-scrollbar{
+  display: none;
+}
+
+.search-and-filter{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 21vw;
+}
+
+.filterOptions{
+  position: absolute;
+  right: 32vw;
+  background-color: white;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  z-index: 1000;
+}
+
+.filterOptions li{
+  list-style: none;
+  margin-bottom: 0.25rem;
+}
+
+.model_type-checkbox{
+  margin-right: 0.5rem;
+  cursor: pointer;
+}
+
+.fa-sliders{
+  font-size: 1.75rem;
+  color: rgb(60, 164, 250);
+  cursor: pointer;
+}
+
+.filterBtns{
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.applyFilterBtn{
+  background-color: green;
+  color: white;
+  border: none;
+  border-radius: 2px;
+  padding: 0.25rem 0.5rem;
+}
+
+.removeFilterBtn{
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 2px;
+  padding: 0.25rem 0.5rem;
+}
+
+.view-table th,
+.view-table td {
+  padding: 0.75rem 0.5rem;
+  text-align: left;
+  border-bottom: 0.1rem solid #ddd;
+  font-size: 0.75rem;
+}
+
+.view-table th {
+  color: #b5b7c0;
+  font-weight: 400;
+}
+
+.view-table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.view-table th {
+  position: sticky;
+  top: 0; /* Keeps the header at the top */
+  background-color: #f8f9fa; /* Light gray background for header */
+  z-index: 1; /* Ensures the header stays above the table rows */
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow */
+}
+
+.view-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9; /* Zebra striping */
+}
+
+.view-table tbody tr:hover {
+  background-color: #f1f1f1; /* Highlight row on hover */
+}
+
+.view-table .link-cell:hover {
+  text-decoration: underline;
+}
+
+/* Add hover effect */
+.view-table th:hover {
+  background-color: #e0e0e0; /* Change background on hover */
+}

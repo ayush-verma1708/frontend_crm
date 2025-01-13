@@ -1,0 +1,276 @@
+.customer-table-container {
+  background-color: #ffffff;
+  border-radius: 1rem;
+  margin: 0 auto 1rem;
+  padding: 1rem 1.5rem;
+  width: 92.5%;
+}
+
+.pagination-controls {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.pagination-controls button {
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  cursor: pointer;
+  font-size: 0.75rem;
+}
+
+.pagination-controls button.active {
+  background-color: #007bff;
+  color: #fff;
+  font-weight: bold;
+}
+
+.pagination-controls button:disabled {
+  background-color: #f0f0f0;
+  cursor: not-allowed;
+}
+
+.pagination-controls span {
+  padding: 8px;
+  color: #999;
+  font-size: 14px;
+}
+
+.customer-table-container {
+  height: 90vh;
+  margin: 0 auto;
+}
+
+.customer-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.customer-table::-webkit-scrollbar{
+  display: none;
+}
+
+.price-range-selector {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Aligns items to the ends */
+  margin: 8px 0; /* Adds spacing above and below */
+  padding: 8px;
+  background-color: #f9f9f9; /* Light background for contrast */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+  font-size: 0.75rem;
+}
+
+.price-input-group {
+  display: flex;
+  flex-direction: column; /* Stack label above input */
+  margin-right: 15px; /* Space between input groups */
+}
+
+.price-input-group label {
+  margin-bottom: 5px; /* Space between label and input */
+  font-weight: bold; /* Emphasize the label */
+}
+
+.price-range-selector input {
+  padding: 8px; /* Adds padding for comfort */
+  border: 1px solid #ccc; /* Light border */
+  border-radius: 4px; /* Rounded corners for inputs */
+  transition: border-color 0.3s; /* Smooth transition for focus */
+  font-size: 0.75rem;
+}
+
+.price-range-selector input:focus {
+  border-color: #007bff; /* Change border color on focus */
+  outline: none; /* Remove default outline */
+}
+
+.price-range-selector button {
+  padding: 10px 15px; /* Comfortable padding */
+  background-color: #007bff; /* Primary color */
+  color: #fff; /* Text color */
+  border: none; /* Remove border */
+  border-radius: 4px; /* Rounded corners for button */
+  cursor: pointer; /* Pointer on hover */
+  transition: background-color 0.3s; /* Smooth transition for hover */
+}
+
+.price-range-selector button:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+}
+
+/* Header styles */
+.customer-table th {
+  position: sticky;
+  top: 0; /* Keeps the header at the top */
+  background-color: #f8f9fa; /* Light gray background for header */
+  z-index: 1; /* Ensures the header stays above the table rows */
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow */
+}
+
+.customer-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9; /* Zebra striping */
+}
+
+.customer-table tbody tr:hover {
+  background-color: #f1f1f1; /* Highlight row on hover */
+}
+
+.customer-table .link-cell:hover {
+  text-decoration: underline;
+}
+
+/* Add hover effect */
+.customer-table th:hover {
+  background-color: #e0e0e0; /* Change background on hover */
+}
+
+/* Sort icon styles */
+.sort-icon {
+  margin-left: 5px; /* Space between text and icon */
+  font-size: 0.8em; /* Smaller icon size */
+  transition: transform 0.2s; /* Transition effect */
+}
+
+/* Rotate icon when sorted descending */
+.sorted-desc .sort-icon {
+  transform: rotate(180deg); /* Rotate for descending */
+}
+
+.customer-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.customer-table th,
+.customer-table td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.link-cell {
+  color: inherit; /* Inherit text color */
+  text-decoration: none; /* Remove underline */
+  display: block; /* Make the whole cell clickable */
+  width: 100%; /* Ensure it occupies full width */
+  height: 100%; /* Ensure it occupies full height */
+}
+
+.customer-table tr:hover {
+  background-color: #f5f5f5; /* Light gray on hover */
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+.customer-table tr:hover .link-cell {
+  color: #007bff; /* Change text color on hover */
+  text-decoration: underline; /* Underline text on hover */
+}
+
+.customer-table-container::-webkit-scrollbar {
+  display: none;
+}
+
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.leftHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.export-btn{
+  background-color: green;
+  color: white;
+  border-radius: 0.75rem;
+  border: none;
+  padding: 0.5rem 1rem;
+}
+
+.rightHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.search-bar {
+  padding: 0.5rem;
+  border: 0.1rem solid #ccc;
+  border-radius: 0.5rem;
+  width: 12.5rem;
+}
+
+.customer-table-content{
+  max-height: 55vh;
+  overflow-y: auto;
+}
+
+.customer-table-content::-webkit-scrollbar{
+  display: none;
+}
+
+.columnFilter::-webkit-scrollbar{
+  display: none;
+}
+
+.customer-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.customer-table th,
+.customer-table td {
+  padding: 0.5rem;
+  text-align: left;
+  border-bottom: 0.1rem solid #ddd;
+  font-size: 0.75rem;
+}
+
+.customer-table th {
+  color: #b5b7c0;
+  font-weight: 400;
+}
+
+.edit-btn,
+.delete-btn,
+.notes-btn {
+  border: none;
+  background-color: white;
+  color: #b5b7c0;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.notes-btn i {
+  color: blue;
+}
+
+.edit-btn i {
+  color: green;
+}
+
+.delete-btn i {
+  color: red;
+}
+
+.search-customer {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.search-customer i {
+  cursor: pointer;
+}

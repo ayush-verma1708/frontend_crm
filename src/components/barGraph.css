@@ -1,0 +1,8 @@
+.barGraph-container{
+    width: 47vw;
+    height: 65vh;
+    margin: 1rem;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+}

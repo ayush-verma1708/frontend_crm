@@ -1,0 +1,63 @@
+  .admin-table-container {
+    background-color: #ffffff;
+    border-radius: 1rem;
+    margin: 0 auto;
+    padding: 1.5rem;
+    width: 92.5%;
+    height: 75vh;
+    overflow-y: auto;
+  }
+
+  .admin-table-container::-webkit-scrollbar{
+    display: none;
+  }
+  
+  .admin-table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+   
+  .search-bar {
+    padding: 0.5rem;
+    border: 0.1rem solid #ccc;
+    border-radius: 0.5rem;
+    width: 12.5rem;
+  }
+    
+  .admin-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .search{
+    display:flex;
+    gap:0.5rem;
+    align-items: center;
+    
+  }
+
+  .search i{
+    cursor: pointer;
+  }
+
+  .admin-table th,
+  .admin-table td {
+    padding: 0.5rem;
+    text-align: left;
+    border-bottom: 0.1rem solid #ddd;
+    font-size: 0.75rem;
+  }
+  
+  .admin-table th {
+    color:#B5B7C0;
+    font-weight: 400;
+  }
+    
+  .delete-btn{
+    border:none;
+    color:#B5B7C0;
+    font-weight: 400;
+    cursor: pointer;
+  }

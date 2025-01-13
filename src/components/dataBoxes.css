@@ -1,0 +1,26 @@
+.dataBoxes-container{
+    height: 20vh;
+    width: 18vw;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 1rem;
+}
+
+.dataBoxes-container .icon{
+    font-size: 2rem;
+    background-color: white;
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.dataBoxes-container .details{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

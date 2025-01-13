@@ -1,0 +1,15 @@
+.viewer-body {
+    display: flex;
+    flex-direction: column;
+    background-color: #F6FAFD;
+    width: 95vw;
+}
+    
+.viewer-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 1.5rem;
+    overflow-y: hidden;
+    height: 90vh;
+}

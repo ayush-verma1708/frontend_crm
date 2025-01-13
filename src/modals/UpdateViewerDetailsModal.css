@@ -1,0 +1,37 @@
+.updateViewerDetailsModal-bg{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.updateViewerDetailsModal-container{
+    width: 30vw;
+    height: 66vh;
+    background-color: #EDECE8;
+    color: black;
+    font-weight: 600;
+    border-radius: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem;
+    gap:1.5rem;
+    overflow-y: auto;
+}
+
+.cross{
+    color: #5932EA;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.5rem;
+    width: 5%;
+    position: relative;
+    left: 93%;
+}

@@ -1,0 +1,8 @@
+.topCustomer{
+    width: 88vw;
+    height: auto;
+    margin: 1rem auto;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+}
