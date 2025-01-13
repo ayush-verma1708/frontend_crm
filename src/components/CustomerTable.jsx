@@ -11,6 +11,7 @@ import {
 import './customerTable.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons';
+import ExportModal from '../modals/ExportModal'; // Assuming you have a component for the modal
 
 const CustomerTable = () => {
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
@@ -37,6 +38,15 @@ const CustomerTable = () => {
   const [currentPage, setCurrentPage] = useState(1); // Track the current page
 
   const magazines = JSON.parse(localStorage.getItem('magazine'));
+  const [showExportModal, setShowExportModal] = useState(false);
+
+  const handleExportClick = () => {
+    setShowExportModal(true);
+  };
+
+  const closeExportModal = () => {
+    setShowExportModal(false);
+  };
 
   const [tableFields, setTableFields] = useState({
     Name: true,
@@ -57,41 +67,6 @@ const CustomerTable = () => {
   // Price range states
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
-
-  // const loadRecords = async (currentPage = 1, pageSize = 200) => {
-  //   setLoading(true);
-  //   setError(null);
-  //   try {
-  //     // Pass currentPage dynamically
-  //     const data = await fetchRecords(
-  //       currentPage,
-  //       pageSize,
-  //       search,
-  //       minPrice,
-  //       maxPrice
-  //     );
-
-  //     const mergedCustomers = mergeCustomersByEmail(data.records);
-
-  //     // Update customer data and fields
-  //     setCustomers(mergedCustomers);
-  //     if (mergedCustomers.length > 0) {
-  //       setFields(Object.keys(mergedCustomers[0]));
-  //     }
-
-  //     // Set pagination data if available in API response
-  //     setTotalPages(data.totalPages || Math.ceil(data.totalRecords / pageSize)); // Calculate total pages
-  //   } catch (err) {
-  //     setError('Error fetching customers');
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-
-  // const handlePageChange = (newPage) => {
-  //   setPage(newPage);
-  //   fetchCustomers(newPage);
-  // };
 
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage); // Update the page number
@@ -145,114 +120,6 @@ const CustomerTable = () => {
     );
   };
 
-  // const fetchCustomers = async (currentPage = 1, pageSize = 200) => {
-  //   setLoading(true);
-  //   setError(null);
-  //   try {
-  //     // Pass currentPage dynamically
-  //     const data = await fetchRecords(
-  //       currentPage,
-  //       pageSize,
-  //       search,
-  //       minPrice,
-  //       maxPrice
-  //     );
-
-  //     const mergedCustomers = mergeCustomersByEmail(data.records);
-
-  //     // Update customer data and fields
-  //     setCustomers(mergedCustomers);
-  //     if (mergedCustomers.length > 0) {
-  //       setFields(Object.keys(mergedCustomers[0]));
-  //     }
-
-  //     // Set pagination data if available in API response
-  //     setTotalPages(data.totalPages || Math.ceil(data.totalRecords / pageSize)); // Calculate total pages
-  //   } catch (err) {
-  //     setError('Error fetching customers');
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-
-  // const fetchCustomers = async (
-  //   currentPage = 1,
-  //   pageSize = 200,
-  //   search = '',
-  //   minPrice = null,
-  //   maxPrice = null
-  // ) => {
-  //   setLoading(true);
-  //   setError(null);
-  //   try {
-  //     console.log('ans', currentPage, pageSize, search, minPrice, maxPrice);
-  //     // Pass currentPage dynamically and include minPrice, maxPrice
-  //     const data = await fetchRecords(
-  //       currentPage,
-  //       pageSize,
-  //       search,
-  //       minPrice,
-  //       maxPrice
-  //     );
-
-  //     const mergedCustomers = mergeCustomersByEmail(data.records);
-
-  //     // Update customer data and fields
-  //     setCustomers(mergedCustomers);
-  //     if (mergedCustomers.length > 0) {
-  //       setFields(Object.keys(mergedCustomers[0]));
-  //     }
-
-  //     // Set pagination data if available in API response
-  //     setTotalPages(data.totalPages || Math.ceil(data.totalRecords / pageSize)); // Calculate total pages
-  //   } catch (err) {
-  //     setError('Error fetching customers');
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-  // const fetchCustomers = async (
-  //   currentPage = 1,
-  //   pageSize = 200,
-  //   search = '',
-  //   minPrice = 0, // Default to least value
-  //   maxPrice = Number.MAX_VALUE // Default to maximum value
-  // ) => {
-  //   setLoading(true);
-  //   setError(null);
-  //   try {
-  //     console.log('Fetching customers with:', {
-  //       currentPage,
-  //       pageSize,
-  //       search,
-  //       minPrice,
-  //       maxPrice,
-  //     });
-
-  //     // Pass updated values
-  //     const data = await fetchRecords(
-  //       currentPage,
-  //       pageSize,
-  //       search,
-  //       minPrice,
-  //       maxPrice
-  //     );
-
-  //     const mergedCustomers = mergeCustomersByEmail(data.records);
-
-  //     setCustomers(mergedCustomers);
-  //     if (mergedCustomers.length > 0) {
-  //       setFields(Object.keys(mergedCustomers[0]));
-  //     }
-
-  //     setTotalPages(data.totalPages || Math.ceil(data.totalRecords / pageSize));
-  //   } catch (err) {
-  //     console.error('Error fetching customers:', err);
-  //     setError('Error fetching customers');
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
   const fetchCustomers = async (
     currentPage = 1,
     pageSize = 200,
@@ -317,15 +184,6 @@ const CustomerTable = () => {
       }
     };
   }, [search, minPrice, maxPrice]); // Dependencies: search, minPrice, maxPrice
-
-  // useEffect(() => {
-  //   console.log('useEffect triggered:', { search, minPrice, maxPrice });
-  //   fetchCustomers(1, 200, search, minPrice, maxPrice);
-  // }, [search, minPrice, maxPrice]);
-
-  // useEffect(() => {
-  //   fetchCustomers();
-  // }, [search, minPrice, maxPrice]);
 
   const mergeCustomersByEmail = (data) => {
     const emailMap = {};
@@ -482,11 +340,6 @@ const CustomerTable = () => {
     setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
   };
 
-  // useEffect(() => {
-  //   loadRecords();
-  //   window.localStorage.removeItem('currCustId');
-  // }, []);
-
   return (
     <div
       className='customer-table-container'
@@ -562,9 +415,8 @@ const CustomerTable = () => {
             </div>
           </div>
         </div>
-
-        <button className='export-btn'>
-          <i class='fa-solid fa-download'></i> Export
+        <button className='export-btn' onClick={handleExportClick}>
+          <i className='fa-solid fa-download'></i> Export
         </button>
       </div>
 
@@ -990,7 +842,13 @@ const CustomerTable = () => {
           </table>
         </div>
       )}
-
+      {showExportModal && (
+        <ExportModal
+          open={showExportModal}
+          data={customers} // Pass the filtered customer data to the modal
+          closeModal={closeExportModal}
+        />
+      )}
       {openNotesModal && (
         <NotesModal
           setOpenNotesModal={setOpenNotesModal}
