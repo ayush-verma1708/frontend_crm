@@ -845,7 +845,7 @@ const CustomerTable = () => {
       {showExportModal && (
         <ExportModal
           open={showExportModal}
-          data={customers} // Pass the filtered customer data to the modal
+          data={filteredCustomers} // Pass the filtered customer data to the modal
           closeModal={closeExportModal}
         />
       )}
